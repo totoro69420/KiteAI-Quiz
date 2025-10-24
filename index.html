@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kite AI Quiz: Part 1 - Introduction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #faecd7 0%, #eed5b7 100%);
+      color: #2d2318;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255,245,230,0.93);
+      border-radius: 1.2rem;
+      box-shadow: 0 0 32px 8px #e0c29a80;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    img.logo {
+      width: 90px;
+      margin-bottom: 1rem;
+      margin-top: 10px;
+      border-radius: 0.8rem;
+      background: #fff5e3;
+      box-shadow: 0 0 20px #e2be8e50;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      color: #ba8534;
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+    p {
+      color: #b69460;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    button {
+      background: #ffe0b3;
+      color: #715a33;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 0.7rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.16s;
+      box-shadow: 0 3px 12px #eedbb050;
+      margin: 0.2rem;
+    }
+    button:hover {
+      background: #fff4e2;
+      transform: scale(1.04);
+    }
+    .hidden { display: none; }
+    .question {
+      font-size: 1.17rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      color: #8d6b36;
+    }
+    .options {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .option {
+      background: #f7e4c2;
+      border: 1.5px solid #ecc999;
+      color: #715519;
+      border-radius: 0.7rem;
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.22s, transform 0.13s, box-shadow 0.22s;
+      box-shadow: 0 0 7px #d3ad76b3;
+    }
+    .option:hover {
+      background: #fef6ee;
+      transform: scale(1.03);
+      box-shadow: 0 2px 16px #e6be7a66;
+    }
+    .progress {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #997c56;
+      font-weight: 600;
+    }
+    .result {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      color: #ad853c;
+      font-weight: 700;
+    }
+    .restart-btn {
+      margin-top: 2rem;
+      background: #ffeac3;
+      color: #715a33;
+      padding: 0.85rem 2.2rem;
+      border-radius: 0.8rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      box-shadow: 0 6px 18px #e9c48750;
+      transition: background 0.16s, transform 0.13s;
+    }
+    .restart-btn:hover {
+      background: #fff5e4;
+      transform: scale(1.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="start-screen">
+      <img src="07fQQARS_400x400__1_-removebg-preview.jpg" alt="Kite AI Logo" class="logo" />
+      <h1>Kite AI Quiz - Part 1</h1>
+      <p>Welcome! Test your knowledge of Kite AI’s vision and mission.<br>This quiz is the first in a series for everyone.</p>
+      <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <div id="quiz-screen" class="hidden">
+      <img src="07fQQARS_400x400__1_-removebg-preview.jpg" alt="Kite AI Logo" class="logo" />
+      <h1>Kite AI Quiz</h1>
+      <div id="question" class="question"></div>
+      <div id="options" class="options"></div>
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <div id="result-screen" class="hidden">
+      <img src="07fQQARS_400x400__1_-removebg-preview.jpg" alt="Kite AI Logo" class="logo" />
+      <h1>Quiz Complete 🎯</h1>
+      <div id="score" class="result"></div>
+      <p>Thanks for learning with Kite AI!</p>
+      <button class="restart-btn" id="restart-btn">Play Again</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is Kite AI’s main goal?",
+        options: [
+          "Democratize access to AI for everyone",
+          "Make video games",
+          "Build hardware devices",
+          "Only serve big tech companies"
+        ],
+        correct: 0
+      },
+      {
+        question: "Kite AI believes the current AI economy is:",
+        options: [
+          "Too centralized and controlled by a few",
+          "Perfect as is",
+          "Run by the government",
+          "Focused on education"
+        ],
+        correct: 0
+      },
+      {
+        question: "What does Kite AI use to fairly reward contributions?",
+        options: [
+          "Proof of AI (PoAI)",
+          "Proof of Stake (PoS)",
+          "Proof of Work (PoW)",
+          "Social media likes"
+        ],
+        correct: 0
+      },
+      {
+        question: "Kite AI wants to enable collaboration across:",
+        options: [
+          "Data, models, and agents",
+          "Music and movies only",
+          "Traditional advertising",
+          "Phone calls"
+        ],
+        correct: 0
+      },
+      {
+        question: "How does Kite AI support privacy and security?",
+        options: [
+          "By keeping sensitive data under full control of its owner",
+          "By posting data on public forums",
+          "By deleting all data daily",
+          "By sharing everything with everyone"
+        ],
+        correct: 0
+      },
+      {
+        question: "Kite AI’s vision is best described as:",
+        options: [
+          "Building a decentralized AI economy",
+          "Building an amusement park",
+          "Creating a fashion brand",
+          "Making viral dance videos"
+        ],
+        correct: 0
+      }
+    ];
+
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const progressEl = document.getElementById("progress");
+    const scoreEl = document.getElementById("score");
+    const startBtn = document.getElementById("start-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    startBtn.addEventListener("click", () => {
+      startScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+      loadQuestion();
+    });
+
+    restartBtn.addEventListener("click", () => {
+      score = 0;
+      currentQuestion = 0;
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+      loadQuestion();
+    });
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+      q.options.forEach((option, i) => {
+        const btn = document.createElement("button");
+        btn.classList.add("option");
+        btn.textContent = option;
+        btn.addEventListener("click", () => checkAnswer(i));
+        optionsEl.appendChild(btn);
+      });
+      progressEl.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+    }
+
+    function checkAnswer(selected) {
+      if (selected === quizData[currentQuestion].correct) score++;
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+      scoreEl.innerHTML = `You scored <strong>${score}</strong> / ${quizData.length}`;
+    }
+  </script>
+</body>
+</html>
